@@ -41,10 +41,26 @@ List the skills available in this repo first:
 npx skills add holapancho/packaging-datacloud-skill --list
 ```
 
-Install to a specific agent (e.g. Claude Code):
+### Claude Code
 
 ```bash
 npx skills add holapancho/packaging-datacloud-skill -a claude-code
+```
+
+This symlinks (or copies, with `--copy`) the skill into `.claude/skills/packaging-datacloud/` for the current project, or `~/.claude/skills/packaging-datacloud/` with `-g` for all projects. Without the CLI, you can get the same result by copying `skills/packaging-datacloud/` from this repo into either of those paths directly. See the [Claude Code Skills docs](https://code.claude.com/docs/en/skills).
+
+### Cursor
+
+```bash
+npx skills add holapancho/packaging-datacloud-skill -a cursor
+```
+
+This installs to `.agents/skills/packaging-datacloud/` for the current project, or `~/.cursor/skills/packaging-datacloud/` with `-g` globally. Without the CLI, copy `skills/packaging-datacloud/` from this repo into either of those paths directly. See the [Cursor Skills docs](https://cursor.com/docs/context/skills).
+
+### Multiple agents at once
+
+```bash
+npx skills add holapancho/packaging-datacloud-skill -a claude-code -a cursor
 ```
 
 Try it once without installing:
