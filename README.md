@@ -1,19 +1,30 @@
 # packaging-datacloud-skill
 
+[![Validate](https://github.com/holapancho/packaging-datacloud-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/holapancho/packaging-datacloud-skill/actions/workflows/validate.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+
 An [Agent Skill](https://agentskills.io) that teaches AI coding agents how to package and distribute Salesforce Data 360 (Data Cloud) **Data Kits** as managed 2GP packages: Standard vs DevOps kit types, the retrieve workflow, SSOT dependency handling, publishing sequence, KQ cleanup, post-install deploy, and known packaging oddities.
 
 Because it follows the open [Agent Skills specification](https://agentskills.io/specification), this skill works the same way across every compatible agent — Claude Code, Cursor, Codex, OpenCode, GitHub Copilot, and 60+ others — without any adaptation.
+
+## Prerequisites
+
+- **Node.js 18+** — only needed to run the `npx skills` installer below; the skill itself has no runtime dependency on Node.
+- **Salesforce CLI (`sf`)** — the workflow this skill teaches drives `sf` commands (retrieve, `sf package version create`, deploy).
+- **A Data Cloud (Data 360) enabled Salesforce org** with a Standard Data Kit to package, and a Dev Hub for 2GP package creation.
 
 ## Repository layout
 
 ```
 skills/
   packaging-datacloud/
-    SKILL.md            # entry point: name, description, quick workflow
-    references/          # 14 detail docs, loaded on demand (progressive disclosure)
+    SKILL.md        # entry point: name, description, quick workflow
+    references/      # 14 detail docs, loaded on demand (progressive disclosure)
 ```
 
 This matches the standard `skills/<name>/SKILL.md` layout, so the skill is discoverable by any Agent Skills-compatible tool without extra configuration.
+
+See [`skills/packaging-datacloud/SKILL.md`](skills/packaging-datacloud/SKILL.md) for the full quick workflow, the "when to use which reference" table covering all 14 reference docs, and links to the official Salesforce Dev Guide and Help articles it's based on.
 
 ## Install
 
@@ -48,6 +59,18 @@ Pin to a specific version by pointing at a tag or commit:
 npx skills add https://github.com/holapancho/packaging-datacloud-skill/tree/v1.0.0
 ```
 
+## Usage
+
+Once installed, the skill activates automatically when your prompt matches its `description`. For example:
+
+> "Package this Standard Data Kit as a managed 2GP package and walk me through the retrieve and publish steps."
+>
+> "I retrieved a Data Kit and the `deploymentOrder` looks off — help me debug it."
+>
+> "What's the SSOT dependency version I should use for this Data Kit package?"
+
+The agent loads `SKILL.md` first, then pulls in the specific reference doc it needs (e.g. `retrieve-workflow.md`, `troubleshooting.md`) instead of loading all 14 references up front.
+
 ## Versioning
 
 This repository follows [Semantic Versioning](https://semver.org/):
@@ -66,6 +89,10 @@ npm run validate
 ```
 
 `npm run validate` runs [`scripts/validate-skill.js`](scripts/validate-skill.js), which checks every `skills/*/SKILL.md` against the Agent Skills spec: the frontmatter must declare `name` (lowercase, hyphen-separated, matching the folder name) and a non-empty `description`. This also runs in CI on every push and pull request ([`.github/workflows/validate.yml`](.github/workflows/validate.yml)).
+
+## Contributing
+
+Issues and pull requests are welcome — this covers a fast-moving part of the Data Cloud product, so corrections to the workflow or new reference docs are useful. Before pushing, run `npm run validate` locally so CI doesn't catch avoidable frontmatter issues, and add a `CHANGELOG.md` entry for any change that affects the documented workflow.
 
 ## License
 
