@@ -1,0 +1,33 @@
+{
+  "name": "packaging-datacloud-skill",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Agent Skill for packaging and distributing Salesforce Data Cloud (Data 360) Data Kits as managed 2GP packages.",
+  "license": "Apache-2.0",
+  "author": "holapancho",
+  "keywords": [
+    "agent-skill",
+    "agentskills",
+    "claude-code",
+    "salesforce",
+    "data-cloud",
+    "data-360",
+    "2gp",
+    "data-kit",
+    "packaging"
+  ],
+  "homepage": "https://github.com/holapancho/packaging-datacloud-skill#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holapancho/packaging-datacloud-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/holapancho/packaging-datacloud-skill/issues"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-skill.js"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.1"
+  }
+}
