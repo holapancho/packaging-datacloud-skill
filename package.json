@@ -5,6 +5,9 @@
   "description": "Agent Skill for packaging and distributing Salesforce Data Cloud (Data 360) Data Kits as managed 2GP packages.",
   "license": "Apache-2.0",
   "author": "holapancho",
+  "engines": {
+    "node": ">=18"
+  },
   "keywords": [
     "agent-skill",
     "agentskills",
