@@ -112,4 +112,6 @@ Issues and pull requests are welcome — this covers a fast-moving part of the D
 
 ## License
 
-[Apache-2.0](LICENSE)
+Copyright 2026 holapancho
+
+Licensed under the [Apache-2.0](LICENSE) license.
