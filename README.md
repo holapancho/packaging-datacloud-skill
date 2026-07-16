@@ -35,6 +35,12 @@ Skills in this repository are distributed through the [Agent Skills CLI](https:/
 npx skills add holapancho/packaging-datacloud-skill
 ```
 
+The package is also published on [npm](https://www.npmjs.com/package/packaging-datacloud-skill), mainly so it's discoverable in registry search:
+
+```bash
+npm install packaging-datacloud-skill
+```
+
 List the skills available in this repo first:
 
 ```bash
