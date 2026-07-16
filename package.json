@@ -1,6 +1,6 @@
 {
   "name": "packaging-datacloud-skill",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Agent Skill for packaging and distributing Salesforce Data Cloud (Data 360) Data Kits as managed 2GP packages.",
   "license": "Apache-2.0",
