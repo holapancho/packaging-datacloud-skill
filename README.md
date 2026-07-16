@@ -19,12 +19,12 @@ Because it follows the open [Agent Skills specification](https://agentskills.io/
 skills/
   packaging-datacloud/
     SKILL.md        # entry point: name, description, quick workflow
-    references/      # 14 detail docs, loaded on demand (progressive disclosure)
+    references/      # 16 detail docs, loaded on demand (progressive disclosure)
 ```
 
 This matches the standard `skills/<name>/SKILL.md` layout, so the skill is discoverable by any Agent Skills-compatible tool without extra configuration.
 
-See [`skills/packaging-datacloud/SKILL.md`](skills/packaging-datacloud/SKILL.md) for the full quick workflow, the "when to use which reference" table covering all 14 reference docs, and links to the official Salesforce Dev Guide and Help articles it's based on.
+See [`skills/packaging-datacloud/SKILL.md`](skills/packaging-datacloud/SKILL.md) for the full quick workflow, the "when to use which reference" table covering all 16 reference docs, and links to the official Salesforce Dev Guide and Help articles it's based on.
 
 ## Install
 
@@ -85,7 +85,7 @@ Once installed, the skill activates automatically when your prompt matches its `
 >
 > "What's the SSOT dependency version I should use for this Data Kit package?"
 
-The agent loads `SKILL.md` first, then pulls in the specific reference doc it needs (e.g. `retrieve-workflow.md`, `troubleshooting.md`) instead of loading all 14 references up front.
+The agent loads `SKILL.md` first, then pulls in the specific reference doc it needs (e.g. `retrieve-workflow.md`, `troubleshooting.md`) instead of loading all 16 references up front.
 
 ## Versioning
 
