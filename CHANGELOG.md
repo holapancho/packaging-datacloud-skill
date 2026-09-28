@@ -5,6 +5,21 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] - 2026-09-28
+
+### Added
+
+- New `openapi/` directory: [openapi/data-kit-endpoints.md](skills/packaging-datacloud/openapi/data-kit-endpoints.md), a slim index of Connect REST paths for data-kit packaging/deploy/undeploy (deliberately not the full multi-MB Connect OpenAPI dump).
+- New `scripts/check-links.py`: verifies every relative markdown link under `SKILL.md`, `references/`, and `openapi/` resolves to a real file. Runnable standalone or by an agent via bash.
+- New [references/dlo-dmo-field-naming.md](skills/packaging-datacloud/references/dlo-dmo-field-naming.md) — stream-backed vs owned write-target lake field naming, subscriber-owned transforms.
+- `references/data-kit-considerations.md` now linked directly from the SKILL.md reference table (KB 003960830).
+
+### Changed
+
+- `references/deploy-components-flow.md` renamed and rewritten as [references/deploy-kit-components.md](skills/packaging-datacloud/references/deploy-kit-components.md): Connect REST payloads and naming as the preferred path, Flow marked legacy.
+- `references/post-install-deploy-runbook.md` trimmed to operator steps/sequence/checklist; payload and naming detail moved to `deploy-kit-components.md`.
+- `SKILL.md` frontmatter `description`, reference table, Critical rules, and Official sources refreshed for Connect-first deploy/undeploy and DLO/DMO field naming; several reference docs (`2gp-workflow.md`, `catalog-search-data-cascade.md`, `data-kit-considerations.md`, `devops-cli-workflow.md`, `help-articles-index.md`, `metadata-cheatsheet.md`, `packaging-oddities.md`, `retrieve-workflow.md`, `ssot-package-dependency.md`, `troubleshooting.md`) updated for consistency with the above.
+
 ## [1.1.0] - 2026-07-16
 
 ### Added

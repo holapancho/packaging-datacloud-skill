@@ -40,7 +40,7 @@ sf org login web -a sandbox --instance-url https://test.salesforce.com
 
 Data Kits → DevOps kit → **Download Manifest**
 
-Or Connect REST: **get data kit manifest**
+Or Connect REST: **get data kit manifest** — path is `GET /ssot/datakit/{dataKitDevName}/manifest` (**singular** `datakit`; see [data-kit-endpoints.md](../openapi/data-kit-endpoints.md)).
 
 Save as e.g. `<package-root>/package.xml`
 
@@ -76,9 +76,9 @@ Check **Deployment History** in target org.
 
 ### 8. Activate
 
-Metadata deploy alone is insufficient:
-- Open data kit in production → **Deploy**, or
-- Call `sfdatakit__DeployDataKitComponents` (see deploy-components-flow.md)
+Metadata deploy alone is insufficient. Prefer **Connect REST** deploy of kit components (`POST …/ssot/data-kits/{kitDevName}?asyncMode=true`) — payloads and naming: [deploy-kit-components.md](deploy-kit-components.md). Operator order: [post-install-deploy-runbook.md](post-install-deploy-runbook.md).
+
+Alternatives: Data Kits UI → **Deploy**, or legacy Flow `sfdatakit__DeployDataKitComponents` (same payload catalog).
 
 ### 9. Re-authorize connectors
 

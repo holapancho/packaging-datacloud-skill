@@ -91,4 +91,4 @@ Use when DLO + transform are **already deployed** but output DLO / source DMO / 
 ## Related docs
 
 - Post-install workflow: [post-install-deploy-runbook.md](post-install-deploy-runbook.md)
-- Semantic search deploy payload: [deploy-components-flow.md](deploy-components-flow.md)
+- Semantic search deploy payload: [deploy-kit-components.md](deploy-kit-components.md)

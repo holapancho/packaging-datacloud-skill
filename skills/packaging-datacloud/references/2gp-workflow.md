@@ -33,7 +33,7 @@ Data Kit package path must contain **only** Data Cloud metadata — no Apex, LWC
 
 For monorepos using `force-app`, set `path` to that subdirectory — see [retrieve-workflow.md](retrieve-workflow.md) Layout B.
 
-## 2. Create unmanaged package (once)
+## 2. Create managed package (once)
 
 ```bash
 sf package create --name "My Data Kit Package" --path data-kit --package-type Managed
@@ -73,7 +73,7 @@ sf package version create \
   --code-coverage
 ```
 
-Data Kit builds often exceed 1 hour — use `-w 90` or higher.
+Official 2GP Data Kit workflow samples use `-w 45`. Data Kit builds often exceed 1 hour — use **`-w 90` or higher** so the CLI wait does not time out early.
 
 ## 6. Promote & distribute
 
@@ -81,10 +81,11 @@ Data Kit builds often exceed 1 hour — use `-w 90` or higher.
 sf package version promote -v <devhub> -p <04t_version_id>
 ```
 
-Subscriber flow: [deploy-components-flow.md](deploy-components-flow.md).
+Subscriber flow: [post-install-deploy-runbook.md](post-install-deploy-runbook.md) (operator steps) + [deploy-kit-components.md](deploy-kit-components.md) (payloads / naming).
 
 ## Related
 
 - [retrieve-workflow.md](retrieve-workflow.md)
+- [post-install-deploy-runbook.md](post-install-deploy-runbook.md)
 - [packaging-oddities.md](packaging-oddities.md)
 - [troubleshooting.md](troubleshooting.md)

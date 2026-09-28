@@ -14,7 +14,7 @@ Many ISV kits declare it by default for CRM-backed streams even when the manifes
 
 ## Where to get the current `04t` ID
 
-IDs and version numbers **change frequently**. Do not copy stale IDs from old docs or screenshots.
+IDs and version numbers **change frequently**. **Never** copy an ID from this skill, a blog, or an old screenshot into production packaging without re-checking Help.
 
 | Source | Use for |
 |--------|---------|
@@ -22,25 +22,17 @@ IDs and version numbers **change frequently**. Do not copy stale IDs from old do
 | Partner Community → **Data Cloud for ISVs** | ISV-oriented pointer (may lag Help; verify against Help) |
 | [Data 360 2GP workflow](https://developer.salesforce.com/docs/data/data-cloud-dev/guide/data-cloud-2gp-workflow.html) | Describes *that* a dependency is required; points to Partner Community |
 
+**Before every package version create:** open the Help article above, take the latest listed version + `04t`, update `packageAliases` / `dependencies`, then create the version.
+
 Install URL pattern:
 
 ```text
 https://login.salesforce.com/packaging/installPackage.apexp?p0=<04t_subscriber_package_version_id>
 ```
 
-## Example (verify before use)
+## `sfdx-project.json` pattern (placeholders only)
 
-As of **30-Mar-2026** (Help article):
-
-| Field | Value |
-|-------|--------|
-| Package name | Salesforce Standard Data Model |
-| Version | 1.132 |
-| Subscriber package version ID | `04tKe000000Pc76` |
-
-## `sfdx-project.json` pattern
-
-Use a **versioned alias** in `packageAliases`, then reference the alias in the package directory `dependencies`:
+Use a **versioned alias**. Substitute `<SSOT_VERSION>` and `<04t_FROM_HELP>` from Help at packaging time — values below are **not** current IDs.
 
 ```json
 {
@@ -48,22 +40,22 @@ Use a **versioned alias** in `packageAliases`, then reference the alias in the p
     {
       "path": "force-app",
       "package": "MY_DATA_KIT_PACKAGE",
-      "dependencies": [{ "package": "ssot-standard-data-model@1.132" }]
+      "dependencies": [{ "package": "ssot-standard-data-model@<SSOT_VERSION>" }]
     }
   ],
   "packageAliases": {
-    "ssot-standard-data-model@1.132": "04tKe000000Pc76"
+    "ssot-standard-data-model@<SSOT_VERSION>": "<04t_FROM_HELP>"
   }
 }
 ```
 
-When Help publishes a newer version, add a new alias (e.g. `@1.133`) and update the `dependencies` entry.
+When Help publishes a newer version, add a new alias (e.g. `@<NEW_VERSION>`) and update the `dependencies` entry. Do not leave an obsolete `04t` in the default dependency.
 
 ## Subscriber org / scratch org notes
 
 - The SSOT package is **1GP**, installed automatically or manually in Data Cloud orgs.
-- **Do not downgrade**: installing an older `04t` (e.g. 1.73) fails if a **newer** version (e.g. 1.132) is already installed — *“A newer version of this package is currently installed.”*
-- For 2GP **package version create**, the dependency in `sfdx-project.json` should match a **current** SSOT version, not an outdated Partner Community post.
+- **Do not downgrade**: installing an older `04t` fails if a **newer** version is already installed — *“A newer version of this package is currently installed.”*
+- For 2GP **package version create**, the dependency in `sfdx-project.json` must match a **current** SSOT version from Help, not an outdated Partner Community post.
 - Installed Packages UI shows namespace `ssot` and links to [sfdc.co/dcssot](https://sfdc.co/dcssot) for version errors.
 
 ## Related

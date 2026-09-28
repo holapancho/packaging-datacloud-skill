@@ -59,6 +59,29 @@ This targets standalone field files only — not `dataSourceObject` files.
 - **Deploy phase:** missing relationships may cause deploy errors — different phase, different fix.
 - Test in a scratch subscriber org before committing to either approach.
 
+## `ObjectSourceTargetMap` vs kit DLO (do not hand-add)
+
+Runtime DLO→DMO mappings created via Connect / Harmonize often retrieve as **`ObjectSourceTargetMap`**, with fields like:
+
+```xml
+<sourceObjectName>Namespace__MyCatalog__dll</sourceObjectName>
+<sourceField>Namespace__MyCatalog__dll.Namespace__Field__c</sourceField>
+<targetObjectName>Namespace__MyCatalog__dlm</targetObjectName>
+```
+
+**Do not** add that metadata to a managed Data Kit package just because it exists in the packaging org.
+
+| Fact | Implication |
+|------|-------------|
+| Kit lakes ship as **`DataSource` / `DataSourceObject`** (templates) | Not as packageable `CustomObject` `*__dll` |
+| Kit DMOs ship as **`CustomObject` `*__dlm`** | Version create can resolve `__dlm` targets |
+| `ObjectSourceTargetMap` treats source `__dll` as a **CustomObject** | `sf package version create` fails: *no CustomObject named …__dll found* |
+| Connect / UI **kit manifest** usually omits `ObjectSourceTargetMap` | Trust the downloaded manifest; prefer `DataSrcDataModelFieldMap` when the kit UI includes field maps |
+
+**Fix:** Remove `objectSourceTargetMaps/` and any `ObjectSourceTargetMap` members from `package.xml`. Rebuild from the kit manifest only.
+
+**If subscriber maps are missing after deploy:** re-establish mappings via kit deploy / UI, or ensure the kit includes the supported map type from the **official manifest** (often `DataSrcDataModelFieldMap`) — do not package raw runtime `ObjectSourceTargetMap` that points at `__dll` CustomObjects.
+
 ## Publishing sequence
 
 | Fact | Implication |
@@ -74,7 +97,7 @@ Workflow: [retrieve-workflow.md](retrieve-workflow.md) → verify `deploymentOrd
 
 ## Long package version builds
 
-Data Kit `sf package version create` often exceeds **1 hour**:
+Official Dev Guide samples use `-w 45`. Data Kit `sf package version create` often exceeds **1 hour** — prefer **`-w 90` or higher**:
 
 ```bash
 sf package version create -v <devhub> -p <0ho_id> -w 90 -f config/project-scratch-def.json

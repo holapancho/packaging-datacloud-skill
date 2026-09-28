@@ -38,9 +38,21 @@ Normal for Standard kits in metadata. Confirm type in source org UI — [kit-def
 
 Omit from manifest for version create; address relationships at deploy time if required — [packaging-oddities.md](packaging-oddities.md).
 
+## `no CustomObject named …__dll found` (ObjectSourceTargetMap)
+
+Example:
+
+```text
+MyCatalog_map_…: In field: DeveloperName - no CustomObject named Namespace__MyCatalog__dll found
+```
+
+**Cause:** `ObjectSourceTargetMap` (often retrieved from the packaging org’s live DLO→DMO map) was added to the package, but kit DLOs are **not** packaged as `CustomObject` `__dll`.
+
+**Fix:** Delete `objectSourceTargetMaps/` and remove `ObjectSourceTargetMap` from `package.xml`. Stick to the **kit Download Manifest** members. Details: [packaging-oddities.md](packaging-oddities.md).
+
 ## Package version create timeout
 
-Re-run with `-w 90` or higher. Data Kit builds often exceed 60 minutes.
+Official samples use `-w 45`; that is often too short. Re-run with **`-w 90` or higher** — Data Kit builds often exceed 60 minutes.
 
 ## DevOps kit in 2GP path
 
@@ -49,6 +61,14 @@ DevOps kits are not for managed packaging. Create a **Standard** kit — [standa
 ## Publish button opens Package Manager
 
 1GP upload path. For 2GP: retrieve + `sf package version create` — skip Publish modal.
+
+## Subscriber lakes missing package namespace
+
+**Expected** after managed kit Deploy: runtime streams/DLOs often have **unqualified** API names. They still belong to the kit (Undeploy via kit; `DataKitDeploymentLog.DataKitName` is namespaced).
+
+Do **not** set Connect `apiName` to `Namespace__DevName` to force a prefix — tends to Internal Error (`860597989`).
+
+See [deploy-kit-components.md](deploy-kit-components.md) § Kit ownership vs runtime naming.
 
 ## Connector / credential errors after subscriber deploy
 
