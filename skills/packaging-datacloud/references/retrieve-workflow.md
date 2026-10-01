@@ -105,6 +105,8 @@ find <package-root>/main/default/objects -name 'KQ_*' -delete
 
 **Keep** embedded `<keyQualifierName>` inside `dataSourceObject` metadata.
 
+**Do not** manually add org runtime mappings (`ObjectSourceTargetMap` pointing at `*__dll`) that were not in the kit manifest — version create fails looking for a `__dll` CustomObject. See [packaging-oddities.md](packaging-oddities.md).
+
 ### 4. Verify kit definition metadata
 
 Open:
@@ -140,8 +142,8 @@ Sequence-only changes may not require a new manifest if you retrieve `DataPackag
 ## Next steps
 
 - Test deploy: [2gp-workflow.md](2gp-workflow.md) step 4
-- Build version: `sf package version create -w 90`
-- Post-install activation: [deploy-components-flow.md](deploy-components-flow.md)
+- Build version: `sf package version create -w 90` (official samples use `-w 45`; prefer 90+) — [2gp-workflow.md](2gp-workflow.md)
+- Post-install activation: [deploy-kit-components.md](deploy-kit-components.md)
 
 ## Related
 

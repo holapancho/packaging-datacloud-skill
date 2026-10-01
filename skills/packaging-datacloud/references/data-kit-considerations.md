@@ -11,6 +11,7 @@ Official supplement to DevOps/2GP workflow docs. Use when building kits, choosin
 - Objects deployed via a **Standard** or **DevOps** Data Kit can **only** be updated by modifying and redeploying the **same** kit (same type).
 - **Standard and DevOps kits are not interchangeable** for updating the same object.
 - Objects **created manually** in the org (not via a kit) **cannot** be updated using any Data Kit.
+- **Runtime API names often omit the package namespace** in subscriber orgs (e.g. `MyCatalog__dll` not `Namespace__MyCatalog__dll`). That does **not** break kit ownership — Undeploy still targets the kit, and `DataKitDeploymentLog` still records `DataKitName` → `ComponentName`. See [deploy-kit-components.md](deploy-kit-components.md) § Kit ownership vs runtime naming.
 
 ### What cannot go in a kit
 
@@ -19,6 +20,8 @@ Official supplement to DevOps/2GP workflow docs. Use when building kits, choosin
 | **DBT segments** (created via API) | End users cannot add them; excluded from kits |
 | **DLO linked to a Data Stream** | Do not add the DLO manually — select the **Data Stream**; the DLO is added automatically |
 | **Standalone DLO** | Only DLOs created from a **Data Transform** can be added manually |
+
+Field API ownership (stream-backed vs owned write-target lakes, subscriber-owned transforms): [dlo-dmo-field-naming.md](dlo-dmo-field-naming.md).
 
 ### DMO dependencies in the kit UI
 
