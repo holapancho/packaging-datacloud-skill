@@ -9,7 +9,7 @@ Because it follows the open [Agent Skills specification](https://agentskills.io/
 
 ## Prerequisites
 
-- **Node.js 18+** — only needed to run the `npx skills` installer below; the skill itself has no runtime dependency on Node.
+- **Node.js 22.20+** — the minimum the `npx skills` installer below requires; the skill itself has no runtime dependency on Node.
 - **Salesforce CLI (`sf`)** — the workflow this skill teaches drives `sf` commands (retrieve, `sf package version create`, deploy).
 - **A Data Cloud (Data 360) enabled Salesforce org** with a Standard Data Kit to package, and a Dev Hub for 2GP package creation.
 

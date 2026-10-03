@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "author": "holapancho",
   "engines": {
-    "node": ">=18"
+    "node": ">=22.20.0"
   },
   "keywords": [
     "agent-skill",

@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `references/post-install-deploy-runbook.md` and `references/undeploy-uninstall-runbook.md` point to it: after an upgrade, redeploy the same kit; do not undeploy first.
 - Dev dependency `js-yaml` upgraded from 4.x to 5.x. `scripts/validate-skill.js` now reports malformed or empty frontmatter as a validation error instead of crashing (`load()` throws on empty input in v5).
 - CI: `actions/checkout` and `actions/setup-node` bumped to v7, Node 20 (end-of-life) replaced with Node 24, `npm ci` for reproducible installs, and the bundled link checker now runs on every push and pull request.
+- `engines.node` raised from `>=18` (end-of-life) to `>=22.20.0`, the minimum the `npx skills` installer requires; README prerequisites updated to match.
+- `scripts/README.md` and the `check-links.py` usage note no longer hard-code the Cursor install path (`.agents/skills/...`); they give the command from the skill directory and list the common install locations.
 - README: reference count updated to 18, version-pin example now uses `v1.3.0`, new usage example for changes after a promoted version.
 
 ## [1.2.0] - 2026-09-28

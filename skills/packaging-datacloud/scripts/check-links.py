@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Check relative markdown links under packaging-datacloud (SKILL + references + openapi).
 
-Usage (from repo root or this skill directory):
-  python3 .agents/skills/packaging-datacloud/scripts/check-links.py
+Usage (from this skill's directory; paths resolve from this file, so any cwd works):
+  python3 scripts/check-links.py
 
 Exit 0 if all relative file links resolve; 1 otherwise.
 """
