@@ -114,7 +114,7 @@ npm install
 npm run validate
 ```
 
-`npm run validate` runs [`scripts/validate-skill.js`](scripts/validate-skill.js), which checks every `skills/*/SKILL.md` against the Agent Skills spec: the frontmatter must declare `name` (lowercase, hyphen-separated, matching the folder name) and a non-empty `description`. This also runs in CI on every push and pull request ([`.github/workflows/validate.yml`](.github/workflows/validate.yml)).
+`npm run validate` runs [`scripts/validate-skill.js`](scripts/validate-skill.js), which checks every `skills/*/SKILL.md` against the Agent Skills spec: the frontmatter must declare `name` (lowercase, hyphen-separated, matching the folder name) and a non-empty `description`. This and the link checker below run in CI on every push and pull request ([`.github/workflows/validate.yml`](.github/workflows/validate.yml)).
 
 The skill also bundles its own link checker: `python3 skills/packaging-datacloud/scripts/check-links.py` verifies every relative markdown link under `SKILL.md`, `references/`, and `openapi/` resolves to a real file. Run it after renaming or removing a reference doc.
 

@@ -15,7 +15,12 @@ let hasErrors = false;
 function readFrontmatter(skillMdPath) {
   const content = fs.readFileSync(skillMdPath, 'utf8');
   const match = content.match(/^---\n([\s\S]*?)\n---/);
-  return match ? yaml.load(match[1]) : null;
+  if (!match) return null;
+  try {
+    return yaml.load(match[1]);
+  } catch {
+    return null;
+  }
 }
 
 function validateSkill(dirName) {
