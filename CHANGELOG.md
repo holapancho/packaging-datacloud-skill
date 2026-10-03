@@ -14,7 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 
 - `SKILL.md` frontmatter `description` now covers changes to a promoted package version and multiple data kits per package; reference table links the new doc; Critical rules add the upgrade-then-redeploy rule, scope "undeploy before uninstall" to uninstall only, and note that a package can hold one or more Standard data kits deployed individually.
-- `references/2gp-workflow.md` links to the new promoted-version reference.
+- `references/2gp-workflow.md` and `references/data-kit-considerations.md` link to the new promoted-version reference.
+- `references/post-install-deploy-runbook.md` and `references/undeploy-uninstall-runbook.md` point to it: after an upgrade, redeploy the same kit; do not undeploy first.
+- README: reference count updated to 18, version-pin example now uses `v1.3.0`, new usage example for changes after a promoted version.
 
 ## [1.2.0] - 2026-09-28
 

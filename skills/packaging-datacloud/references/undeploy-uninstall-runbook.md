@@ -2,6 +2,8 @@
 
 **Install ≠ deploy** still applies in reverse: uninstalling a managed Data Kit package fails (or UI Undeploy fails) while **runtime** components remain. Remove deployed components first, then uninstall the package.
 
+**Upgrading, not uninstalling?** Do not undeploy. Upgrade the package, then redeploy the same kit — [promoted-version-changes.md](promoted-version-changes.md).
+
 Official Help: [Uninstall a Deployed Data Kit](https://help.salesforce.com/s/articleView?id=data.c360_uninstall_data_kit.htm&type=5).
 
 Validated end-to-end pattern (Connect undeploy → stream delete → Tooling ghost cleanup → `sf package uninstall`) on a managed Standard kit subscriber org.

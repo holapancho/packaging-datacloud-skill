@@ -26,7 +26,7 @@ skills/
 
 This matches the standard `skills/<name>/SKILL.md` layout, so the skill is discoverable by any Agent Skills-compatible tool without extra configuration.
 
-See [`skills/packaging-datacloud/SKILL.md`](skills/packaging-datacloud/SKILL.md) for the full quick workflow, the "when to use which reference" table covering all 17 reference docs, and links to the official Salesforce Dev Guide and Help articles it's based on.
+See [`skills/packaging-datacloud/SKILL.md`](skills/packaging-datacloud/SKILL.md) for the full quick workflow, the "when to use which reference" table covering all 18 reference docs, and links to the official Salesforce Dev Guide and Help articles it's based on.
 
 ## Install
 
@@ -80,7 +80,7 @@ npx skills use holapancho/packaging-datacloud-skill@packaging-datacloud | claude
 Pin to a specific version by pointing at a tag or commit:
 
 ```bash
-npx skills add https://github.com/holapancho/packaging-datacloud-skill/tree/v1.0.0
+npx skills add https://github.com/holapancho/packaging-datacloud-skill/tree/v1.3.0
 ```
 
 ## Usage
@@ -92,6 +92,8 @@ Once installed, the skill activates automatically when your prompt matches its `
 > "I retrieved a Data Kit and the `deploymentOrder` looks off — help me debug it."
 >
 > "What's the SSOT dependency version I should use for this Data Kit package?"
+>
+> "I promoted version 1.0 and now need to add a data stream to the kit — how do I ship that to subscribers?"
 
 The agent loads `SKILL.md` first, then pulls in the specific reference doc it needs (e.g. `retrieve-workflow.md`, `troubleshooting.md`) instead of loading all 18 references up front.
 
