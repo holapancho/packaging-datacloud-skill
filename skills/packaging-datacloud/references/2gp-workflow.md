@@ -86,6 +86,7 @@ Subscriber flow: [post-install-deploy-runbook.md](post-install-deploy-runbook.md
 ## Related
 
 - [retrieve-workflow.md](retrieve-workflow.md)
+- [promoted-version-changes.md](promoted-version-changes.md) — add, modify, delete, and a second kit after promote
 - [post-install-deploy-runbook.md](post-install-deploy-runbook.md)
 - [packaging-oddities.md](packaging-oddities.md)
 - [troubleshooting.md](troubleshooting.md)

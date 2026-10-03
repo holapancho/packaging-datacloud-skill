@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.3.0] - 2026-10-03
+
+### Added
+
+- New [references/promoted-version-changes.md](skills/packaging-datacloud/references/promoted-version-changes.md): what happens when you add, modify, rename, or delete components after a promoted Data Kit version (version creation → upgrade → redeploy of the same kit), why undeploy is for uninstall only, and multiple Standard data kits in one package.
+
+### Changed
+
+- `SKILL.md` frontmatter `description` now covers changes to a promoted package version and multiple data kits per package; reference table links the new doc; Critical rules add the upgrade-then-redeploy rule, scope "undeploy before uninstall" to uninstall only, and note that a package can hold one or more Standard data kits deployed individually.
+- `references/2gp-workflow.md` links to the new promoted-version reference.
+
 ## [1.2.0] - 2026-09-28
 
 ### Added

@@ -3,7 +3,7 @@
 [![Validate](https://github.com/holapancho/packaging-datacloud-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/holapancho/packaging-datacloud-skill/actions/workflows/validate.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
-An [Agent Skill](https://agentskills.io) that teaches AI coding agents how to package and distribute Salesforce Data 360 (Data Cloud) **Data Kits** as managed 2GP packages: Standard vs DevOps kit types, the retrieve workflow, SSOT dependency handling, publishing sequence, KQ cleanup, Connect REST deploy/undeploy after install, DLO/DMO field naming, and known packaging oddities.
+An [Agent Skill](https://agentskills.io) that teaches AI coding agents how to package and distribute Salesforce Data 360 (Data Cloud) **Data Kits** as managed 2GP packages: Standard vs DevOps kit types, the retrieve workflow, SSOT dependency handling, publishing sequence, KQ cleanup, Connect REST deploy/undeploy after install, changes after a promoted version, DLO/DMO field naming, and known packaging oddities.
 
 Because it follows the open [Agent Skills specification](https://agentskills.io/specification), this skill works the same way across every compatible agent — Claude Code, Cursor, Codex, OpenCode, GitHub Copilot, and 60+ others — without any adaptation.
 
@@ -19,7 +19,7 @@ Because it follows the open [Agent Skills specification](https://agentskills.io/
 skills/
   packaging-datacloud/
     SKILL.md        # entry point: name, description, quick workflow
-    references/      # 17 detail docs, loaded on demand (progressive disclosure)
+    references/      # 18 detail docs, loaded on demand (progressive disclosure)
     openapi/         # slim Connect REST endpoint index for data-kit deploy/undeploy
     scripts/         # check-links.py — verifies relative markdown links resolve
 ```
@@ -93,7 +93,7 @@ Once installed, the skill activates automatically when your prompt matches its `
 >
 > "What's the SSOT dependency version I should use for this Data Kit package?"
 
-The agent loads `SKILL.md` first, then pulls in the specific reference doc it needs (e.g. `retrieve-workflow.md`, `troubleshooting.md`) instead of loading all 17 references up front.
+The agent loads `SKILL.md` first, then pulls in the specific reference doc it needs (e.g. `retrieve-workflow.md`, `troubleshooting.md`) instead of loading all 18 references up front.
 
 ## Versioning
 
