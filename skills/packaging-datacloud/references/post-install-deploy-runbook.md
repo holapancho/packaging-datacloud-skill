@@ -4,6 +4,8 @@ Runbook for activating a **Standard Data Kit** in a **subscriber org** after man
 
 **Payloads, naming, and API shapes:** [deploy-kit-components.md](deploy-kit-components.md) (Connect preferred; Flow legacy).
 
+**After a package upgrade:** run this same deploy again for the same kit to apply added or modified components. Do not undeploy first — [promoted-version-changes.md](promoted-version-changes.md).
+
 ---
 
 ## Core concepts

@@ -1,11 +1,11 @@
 {
   "name": "packaging-datacloud-skill",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Agent Skill for packaging and distributing Salesforce Data Cloud (Data 360) Data Kits as managed 2GP packages.",
   "license": "Apache-2.0",
   "author": "holapancho",
   "engines": {
-    "node": ">=18"
+    "node": ">=22.20.0"
   },
   "keywords": [
     "agent-skill",
@@ -36,6 +36,6 @@
     "validate": "node scripts/validate-skill.js"
   },
   "devDependencies": {
-    "js-yaml": "^4.1.1"
+    "js-yaml": "^5.4.2"
   }
 }

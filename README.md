@@ -3,13 +3,13 @@
 [![Validate](https://github.com/holapancho/packaging-datacloud-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/holapancho/packaging-datacloud-skill/actions/workflows/validate.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
-An [Agent Skill](https://agentskills.io) that teaches AI coding agents how to package and distribute Salesforce Data 360 (Data Cloud) **Data Kits** as managed 2GP packages: Standard vs DevOps kit types, the retrieve workflow, SSOT dependency handling, publishing sequence, KQ cleanup, Connect REST deploy/undeploy after install, DLO/DMO field naming, and known packaging oddities.
+An [Agent Skill](https://agentskills.io) that teaches AI coding agents how to package and distribute Salesforce Data 360 (Data Cloud) **Data Kits** as managed 2GP packages: Standard vs DevOps kit types, the retrieve workflow, SSOT dependency handling, publishing sequence, KQ cleanup, Connect REST deploy/undeploy after install, changes after a promoted version, DLO/DMO field naming, and known packaging oddities.
 
 Because it follows the open [Agent Skills specification](https://agentskills.io/specification), this skill works the same way across every compatible agent — Claude Code, Cursor, Codex, OpenCode, GitHub Copilot, and 60+ others — without any adaptation.
 
 ## Prerequisites
 
-- **Node.js 18+** — only needed to run the `npx skills` installer below; the skill itself has no runtime dependency on Node.
+- **Node.js 22.20+** — the minimum the `npx skills` installer below requires; the skill itself has no runtime dependency on Node.
 - **Salesforce CLI (`sf`)** — the workflow this skill teaches drives `sf` commands (retrieve, `sf package version create`, deploy).
 - **A Data Cloud (Data 360) enabled Salesforce org** with a Standard Data Kit to package, and a Dev Hub for 2GP package creation.
 
@@ -19,14 +19,14 @@ Because it follows the open [Agent Skills specification](https://agentskills.io/
 skills/
   packaging-datacloud/
     SKILL.md        # entry point: name, description, quick workflow
-    references/      # 17 detail docs, loaded on demand (progressive disclosure)
+    references/      # 18 detail docs, loaded on demand (progressive disclosure)
     openapi/         # slim Connect REST endpoint index for data-kit deploy/undeploy
     scripts/         # check-links.py — verifies relative markdown links resolve
 ```
 
 This matches the standard `skills/<name>/SKILL.md` layout, so the skill is discoverable by any Agent Skills-compatible tool without extra configuration.
 
-See [`skills/packaging-datacloud/SKILL.md`](skills/packaging-datacloud/SKILL.md) for the full quick workflow, the "when to use which reference" table covering all 17 reference docs, and links to the official Salesforce Dev Guide and Help articles it's based on.
+See [`skills/packaging-datacloud/SKILL.md`](skills/packaging-datacloud/SKILL.md) for the full quick workflow, the "when to use which reference" table covering all 18 reference docs, and links to the official Salesforce Dev Guide and Help articles it's based on.
 
 ## Install
 
@@ -80,7 +80,7 @@ npx skills use holapancho/packaging-datacloud-skill@packaging-datacloud | claude
 Pin to a specific version by pointing at a tag or commit:
 
 ```bash
-npx skills add https://github.com/holapancho/packaging-datacloud-skill/tree/v1.0.0
+npx skills add https://github.com/holapancho/packaging-datacloud-skill/tree/v1.3.0
 ```
 
 ## Usage
@@ -92,8 +92,10 @@ Once installed, the skill activates automatically when your prompt matches its `
 > "I retrieved a Data Kit and the `deploymentOrder` looks off — help me debug it."
 >
 > "What's the SSOT dependency version I should use for this Data Kit package?"
+>
+> "I promoted version 1.0 and now need to add a data stream to the kit — how do I ship that to subscribers?"
 
-The agent loads `SKILL.md` first, then pulls in the specific reference doc it needs (e.g. `retrieve-workflow.md`, `troubleshooting.md`) instead of loading all 17 references up front.
+The agent loads `SKILL.md` first, then pulls in the specific reference doc it needs (e.g. `retrieve-workflow.md`, `troubleshooting.md`) instead of loading all 18 references up front.
 
 ## Versioning
 
@@ -112,7 +114,7 @@ npm install
 npm run validate
 ```
 
-`npm run validate` runs [`scripts/validate-skill.js`](scripts/validate-skill.js), which checks every `skills/*/SKILL.md` against the Agent Skills spec: the frontmatter must declare `name` (lowercase, hyphen-separated, matching the folder name) and a non-empty `description`. This also runs in CI on every push and pull request ([`.github/workflows/validate.yml`](.github/workflows/validate.yml)).
+`npm run validate` runs [`scripts/validate-skill.js`](scripts/validate-skill.js), which checks every `skills/*/SKILL.md` against the Agent Skills spec: the frontmatter must declare `name` (lowercase, hyphen-separated, matching the folder name) and a non-empty `description`. This and the link checker below run in CI on every push and pull request ([`.github/workflows/validate.yml`](.github/workflows/validate.yml)).
 
 The skill also bundles its own link checker: `python3 skills/packaging-datacloud/scripts/check-links.py` verifies every relative markdown link under `SKILL.md`, `references/`, and `openapi/` resolves to a real file. Run it after renaming or removing a reference doc.
 

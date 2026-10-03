@@ -5,8 +5,9 @@ description: >
   kit types, retrieve workflow, SSOT dependency, publishing sequence, KQ cleanup, Connect REST deploy /
   undeploy after install, packaging oddities, and DLO/DMO field naming (stream-backed vs owned write-target
   lakes; subscriber-owned transforms). Use when packaging data kits, DataPackageKitDefinition, DMOs, data
-  streams, Connect ssot/data-kits deploy or undeploy, or Data Cloud metadata for AppExchange or managed
-  package distribution.
+  streams, Connect ssot/data-kits deploy or undeploy, adding/modifying/deleting components in a
+  promoted package version, multiple data kits in one package, or Data Cloud metadata for
+  AppExchange or managed package distribution.
 ---
 
 # packaging-datacloud
@@ -36,6 +37,7 @@ Workflow for **Standard** data kits in **managed 2GP** packages (Data Cloud / Da
 | Standard vs DevOps kit types | [standard-vs-devops-data-kits.md](references/standard-vs-devops-data-kits.md) |
 | Help article index | [help-articles-index.md](references/help-articles-index.md) |
 | Managed 2GP build & promote | [2gp-workflow.md](references/2gp-workflow.md) |
+| Add, modify, or delete after a promoted version | [promoted-version-changes.md](references/promoted-version-changes.md) — upgrade then redeploy the same kit; undeploy is for uninstall only |
 | SSOT package dependency | [ssot-package-dependency.md](references/ssot-package-dependency.md) |
 | Metadata types in kit | [metadata-cheatsheet.md](references/metadata-cheatsheet.md) |
 | Kit definition flags & sequence | [kit-definition-metadata.md](references/kit-definition-metadata.md) |
@@ -59,7 +61,9 @@ Workflow for **Standard** data kits in **managed 2GP** packages (Data Cloud / Da
 - **KQ cleanup:** delete standalone `objects/*/fields/KQ_*` only; keep embedded `keyQualifierName` in `dataSourceObject`
 - **No hand-added `ObjectSourceTargetMap`** — breaks `package version create` ([packaging-oddities.md](references/packaging-oddities.md))
 - **SSOT:** current Help `04t` ID; **version create** wait **90+** minutes (official samples use `-w 45`; too short for many Data Kit builds)
-- **Undeploy before uninstall**; **Currency Connection** off before `StaticCurrencyRatesTransform_*` (KB [002774314](https://help.salesforce.com/s/articleView?id=002774314&type=1)) — more undeploy traps: [undeploy-uninstall-runbook.md](references/undeploy-uninstall-runbook.md)
+- **After a promoted version:** add or modify in the kit, create the next version on that ancestor, **upgrade**, then **redeploy the same kit**. Do not undeploy first. Dropping a member from the kit does not delete runtime. Deleting Data 360 metadata files from a released package is expected to fail version creation — [promoted-version-changes.md](references/promoted-version-changes.md)
+- **Undeploy before uninstall** only; **Currency Connection** off before `StaticCurrencyRatesTransform_*` (KB [002774314](https://help.salesforce.com/s/articleView?id=002774314&type=1)) — more undeploy traps: [undeploy-uninstall-runbook.md](references/undeploy-uninstall-runbook.md)
+- A package can contain **one or more** Standard data kits. Deploy each kit on its own. Keep them in the Data Cloud-only package directory
 - **Kit ownership ≠ runtime namespace:** unqualified runtime lakes/streams stay kit-owned; never force `Namespace__` on Connect `apiName` ([deploy-kit-components.md](references/deploy-kit-components.md)). Field naming: [dlo-dmo-field-naming.md](references/dlo-dmo-field-naming.md). Retrieved `dataKitType: NONE` / `isDeployed: false` is normal ([kit-definition-metadata.md](references/kit-definition-metadata.md)).
 
 ## Official sources

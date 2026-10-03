@@ -61,5 +61,6 @@ For kit deployments involving stream bundles, only **standard tags** are support
 
 - [devops-cli-workflow.md](devops-cli-workflow.md) — DevOps kit sandbox→prod
 - [2gp-workflow.md](2gp-workflow.md) — Standard kit + managed 2GP
+- [promoted-version-changes.md](promoted-version-changes.md) — add, modify, delete after promote; upgrade then redeploy the same kit
 - [troubleshooting.md](troubleshooting.md) — FieldSrcTrgtRelationship, publishing sequence
 - [packaging-oddities.md](packaging-oddities.md) — KQ_*, relations at package version create
